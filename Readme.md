@@ -24,7 +24,7 @@ A simple dockerized Django-based Elasticsearch monitor. Have all your clusters a
     $ vi .env
     ```
 
-    ``` conf
+    ``` python
     SECRET_KEY=5(15ds+i2+%ik6z&!yer+ga9m=e%jcqiz_5wszg)r-z!2--b2d #Change this
     DB_NAME=postgres #Note this
     DB_USER=postgres 
@@ -40,7 +40,7 @@ A simple dockerized Django-based Elasticsearch monitor. Have all your clusters a
     $ vi .env.db
     ```
 
-    ``` conf
+    ``` python
     POSTGRES_USER=postgres
     POSTGRES_PASSWORD=postgres
     POSTGRES_DB=postgres #Same as DB_Name
@@ -103,7 +103,7 @@ A simple dockerized Django-based Elasticsearch monitor. Have all your clusters a
     ```
 
     If for example your elasticsearch cluster has the following properties:
-    ```
+    ``` yaml
     1. Name: My_ES
     2. ES_URL: http://1.1.1.1:9200
     3. Kibana_URL: http://1.1.1.1:5601
