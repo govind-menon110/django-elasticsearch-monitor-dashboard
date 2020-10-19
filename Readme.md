@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # Elasticsearch Cluster Monitor
 
 A simple dockerized Django-based Elasticsearch monitor. Have all your clusters at one place and immediately know if any one of them is down.
