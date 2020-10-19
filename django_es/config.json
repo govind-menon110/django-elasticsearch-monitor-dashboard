@@ -1,0 +1,22 @@
+[
+    {
+        "id":"1",
+        "es_name":"YOUR_ES",
+        "es_url":"http://ES_IP:ES_PORT",
+        "kibana_url":"KIBANA_URL",
+        "query_index":"/ES_INDEX-*/_search?pretty",
+        "kibana_filter":"DASHBOARD/CUSTOM_SEARCH URL",
+        "doc_limit":"0",
+        "es_desc":"DESCRIPTION"
+    },
+    {
+        "id":"2",
+        "es_name":"YOUR_ES_NAME",
+        "es_url":"https://ES_URL",
+        "kibana_url":"KIBANA_URL",
+        "query_index":"/logstash-*/_search?pretty",
+        "kibana_filter":"DASHBOARD/CUSTOM_SEARCH URL",
+        "doc_limit":"0",
+        "es_desc":"DESCRIPTION"
+    }
+]

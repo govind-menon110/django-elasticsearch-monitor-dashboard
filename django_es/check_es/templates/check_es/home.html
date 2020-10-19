@@ -1,0 +1,48 @@
+{% extends 'check_es/base.html' %}
+{% block content %}
+
+<br>
+<div class="d-flex">
+<h4 style="padding-left:50px">Last Updated: {{ timestamp }}</h4>
+</div>
+<br>
+<table id="sec-dashboard" class="table table-hover table-bordered">
+    <thead>
+      <tr class="text-center">
+        <th scope="col" style="width:5%">#</th>
+        <th scope="col" style="width:10%">Source</th>
+	<th scope="col" style="width:25%">Description</th>
+        <th scope="col" style="width:20%">ES Endpoint URL</th>
+        <th scope="col" style="width:20%">Kibana Dashboards</th>
+         <!--URL of Kibana with -30m, Cell Color, Number of docs -->
+        <th scope="col" style="width:10%">Log count of last 12 hours</th>
+        <th scope="col" style="width:10%">ES Health</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for column in es_data %}
+        <tr class="text-center">
+            <td style="vertical-align:middle">{{ column.es_id }}</td>
+            <td style="vertical-align:middle">{{ column.es_name }}</td>
+	    <td style="vertical-align:middle">{{ column.desc }}</td>
+            <td style="vertical-align:middle"><a href="{{ column.es_url }}" target="_blank">{{ column.es_url }}</a></td>
+	    <td style="vertical-align:middle"><a href="{{ column.kibana_url }}" target="_blank">{{ column.es_name|add:' Dashboard' }}</button></a></td>
+	    {% if column.doc_color != "white" %}
+	    <td style="vertical-align:middle" bgcolor="{{ column.doc_color }}" class="text-center"><a href="{{ column.kibana_filter }}" target="_blank"><font color="white">{{ column.es_json_docs }}</font></a></td>
+	    {% else %}
+	    <td style="vertical-align:middle" bgcolor="{{ column.doc_color }}" class="text-center"><a href="{{ column.kibana_filter }}" target="_blank"><font color="black">N/A</font></a></td>
+	    {% endif %}
+	    {% if column.es_health == "green" %}
+            <td style="vertical-align:middle"><a href="{{ column.es_url|add:'/_cat/indices?v' }}" target="_blank"><button type="button" class="btn btn-success btn-block text-center">Excellent</button></a></td>
+            {% elif column.es_health == "yellow" %}
+            <td style="vertical-align:middle"><a href="{{ column.es_url|add:'/_cat/indices?v' }}" target="_blank"><button type="button" class="btn btn-warning btn-block text-center">Fair</button></a></td>
+            {% elif column.es_health == "red" %}
+            <td style="vertical-align:middle"><a href="{{ column.es_url|add:'/_cat/indices?v' }}" target="_blank"><button type="button" class="btn btn-danger btn-block text-center">Danger</button></a></td>
+	    {% else %}
+	    <td style="vertical-align:middle"><a href="{{ column.es_url|add:'/_cat/indices?v' }}" target="_blank"><button type="button" class="btn btn-secondary btn-block text-center">Manual Check</button></a></td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

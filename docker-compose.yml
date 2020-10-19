@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  web:
+    restart: always
+    build:
+        context: ./django_es
+        dockerfile: Dockerfile
+    expose:
+      - "8000"
+    links:
+      - postgres:postgres
+    volumes:
+      - web-static:/static
+    env_file: .env
+    command: sh -c "/usr/local/bin/gunicorn django_es.wsgi:application -w 3 -b :8000 && /bin/python manage.py collectstatic --no-input"
+
+  nginx:
+    restart: always
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - web-static:/static
+    links:
+      - web:web
+
+  postgres:
+    restart: always
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./.env.db
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+
+volumes:
+  web-static:
+  pgdata:
