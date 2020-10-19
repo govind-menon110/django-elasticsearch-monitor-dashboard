@@ -182,5 +182,17 @@ If you wish to add/remove Elasticsearch clusters or change anything in the `conf
 $ sudo `which docker-compose` up -d --build --force-recreate
 ```
 
+## References:
+
+
+1. [Dockerizing Django](https://github.com/realpython/dockerizing-django) Blog Post 1
+2. [Dockerizing Django](https://pawamoy.github.io/posts/docker-compose-django-postgres-nginx/) Blog Post 2
+3. [Dockerizing Django](https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/) Blog Post 3 and its github [repo](https://github.com/testdrivenio/django-on-docker/tree/master/app)
+4. [Dockerizing Django](https://learndjango.com/tutorials/django-docker-and-postgresql-tutorial) Blog Post 4
+2. [Rebuilding Docker container after config change](https://stackoverflow.com/questions/36884991/how-to-rebuild-docker-container-in-docker-compose-yml)
+3. [Performing Migrations in Django Docker container](https://stackoverflow.com/questions/33992867/how-do-you-perform-django-database-migrations-when-using-docker-compose)
+4. [Creating a default superuser in Django Docker container](https://stackoverflow.com/questions/30027203/)create-django-super-user-in-a-docker-container-without-inputting-password
+5. [Clean Restart of Docker Containers](https://docs.tibco.com/pub/mash-local/4.1.1/doc/html/docker/GUID-BD850566-5B79-4915-987E-430FC38DAAE4.html)
+7. [Executing multiple commands in docker-compose](https://stackoverflow.com/questions/30063907/using-docker-compose-how-to-execute-multiple-commands)
 
 
