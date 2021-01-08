@@ -171,7 +171,7 @@ A simple dockerized Django-based Elasticsearch monitor. Have all your clusters a
     $ sudo `which docker-compose` run -d web python manage.py migrate
     ```
 
-5. Wait for 20s or so
+5. Wait for 120s (> 2mins) or so
 
 Your dashboard would be ready!
 
