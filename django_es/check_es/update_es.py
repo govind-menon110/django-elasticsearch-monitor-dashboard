@@ -16,14 +16,21 @@ def get_es_health(es_url):
         with open('errors.log', 'a') as errorfile:
             errorfile.write("EXCEPTION: " + str(em))
         return None
+    try:
+        r = requests.get(es_url + health_endpoint, timeout=2, auth = HTTPBasicAuth('admin', 'admin'), verify=False)
+        r.raise_for_status()
+        return r.json()
+    except Exception as em:
+        with open('errors.log', 'a') as errorfile:
+            errorfile.write("EXCEPTION: " + str(em))
+        return None
     except requests.RequestException:
         return None
     except requests.Timeout:
         return None
 
 def get_es_docs(es_url, index, time):
-    try:
-        query = json.dumps({
+    query = json.dumps({
                 "query": 
                     {
                         "range": {
@@ -34,8 +41,17 @@ def get_es_docs(es_url, index, time):
                     },
                 "size":0, 
                 "track_total_hits":'true'
-        })   
+        }) 
+    try:  
         response = requests.get(str(es_url)+str(index), data=query, headers={'content-type': 'application/json'}, timeout=5)
+        response.raise_for_status()
+        return response.json()
+    except Exception as em:
+        with open('errors.log', 'a') as errorfile:
+            errorfile.write("EXCEPTION: " + str(em))
+        return None
+    try:
+        response = requests.get(str(es_url)+str(index), data=query, headers={'content-type': 'application/json'}, timeout=5, auth = HTTPBasicAuth('admin', 'admin'), verify=False)
         response.raise_for_status()
         return response.json()
     except Exception as em:
